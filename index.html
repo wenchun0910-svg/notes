@@ -112,43 +112,43 @@
                 </div>
 
                 <!-- 2. 中間：搜尋框與系統管理工具 -->
-                <div class="flex flex-col lg:flex-row items-center gap-4 w-full xl:w-auto flex-1 xl:justify-end shrink">
+                <div class="flex flex-col lg:flex-row items-center gap-3 w-full xl:w-auto flex-1 xl:justify-end shrink">
                     
-                    <!-- 手繪風搜尋框 -->
-                    <div class="relative w-full lg:w-72 shrink-0">
+                    <!-- 手繪風搜尋框 (縮小寬度並改為膠囊狀圓角) -->
+                    <div class="relative w-full lg:w-48 xl:w-56 shrink-0">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <i class="ph-bold ph-magnifying-glass text-[#4a4a4a] text-lg"></i>
                         </div>
-                        <input type="text" id="searchInput" oninput="handleSearch()" class="block w-full pl-10 pr-3 py-2.5 border-2 border-[#5a5a5a] rounded-2xl leading-5 bg-white placeholder-[#9ca3af] focus:outline-none focus:ring-0 focus:border-[#72a1d4] sm:text-md font-bold shadow-[2px_2px_0_#e0e0e0] transition-all" placeholder="找找哪一天的回憶...">
+                        <input type="text" id="searchInput" oninput="handleSearch()" class="block w-full pl-9 pr-3 py-1.5 border-2 border-[#5a5a5a] rounded-full leading-5 bg-white placeholder-[#9ca3af] focus:outline-none focus:ring-0 focus:border-[#72a1d4] text-sm font-bold shadow-[2px_2px_0_#e0e0e0] transition-all" placeholder="找找哪一天的回憶...">
                     </div>
 
                     <!-- 管理員工具列 (登入後顯示) -->
-                    <!-- 修改：使用 w-fit 讓黃色背景緊貼按鈕內容，消除右側多餘空白 -->
-                    <div id="adminToolbar" class="hidden flex flex-wrap justify-center items-center bg-[#fefce8] p-2 rounded-2xl border-2 border-[#f4d068] w-fit shadow-[2px_3px_0_rgba(244,208,104,0.3)] gap-2">
-                        <span class="text-[#854d0e] font-bold mx-1 hidden 2xl:inline whitespace-nowrap text-md title-font">
-                            <i class="ph-duotone ph-magic-wand text-[#f4d068] mr-1 align-middle text-2xl"></i>工具箱
+                    <!-- 修改：縮小 gap 與 padding，並加入 lg:flex-nowrap 確保大螢幕排成一列 -->
+                    <div id="adminToolbar" class="hidden flex flex-wrap lg:flex-nowrap justify-center items-center bg-[#fefce8] p-1.5 rounded-2xl border-2 border-[#f4d068] w-fit shadow-[2px_3px_0_rgba(244,208,104,0.3)] gap-1.5">
+                        <span class="text-[#854d0e] font-bold mx-1 hidden 2xl:inline whitespace-nowrap text-sm title-font">
+                            <i class="ph-duotone ph-magic-wand text-[#f4d068] mr-1 align-middle text-xl"></i>工具箱
                         </span>
                         
                         <!-- 匯出 Excel 按鈕 -->
-                        <button onclick="exportToExcel()" class="doodle-btn bg-[#22c55e] text-white hover:bg-[#16a34a] px-3 py-1.5 flex items-center justify-center space-x-1 text-sm" title="匯出 Excel">
-                            <i class="ph-bold ph-microsoft-excel-logo text-xl"></i>
+                        <button onclick="exportToExcel()" class="doodle-btn bg-[#22c55e] text-white hover:bg-[#16a34a] px-2.5 py-1.5 flex items-center justify-center space-x-1 text-sm" title="匯出 Excel">
+                            <i class="ph-bold ph-microsoft-excel-logo text-lg"></i>
                             <span class="hidden md:inline whitespace-nowrap">Excel</span>
                         </button>
 
                         <!-- 新增：匯出 Word 按鈕 -->
-                        <button onclick="exportToWord()" class="doodle-btn bg-[#3b82f6] text-white hover:bg-[#2563eb] px-3 py-1.5 flex items-center justify-center space-x-1 text-sm" title="匯出 Word">
-                            <i class="ph-bold ph-file-doc text-xl"></i>
+                        <button onclick="exportToWord()" class="doodle-btn bg-[#3b82f6] text-white hover:bg-[#2563eb] px-2.5 py-1.5 flex items-center justify-center space-x-1 text-sm" title="匯出 Word">
+                            <i class="ph-bold ph-file-doc text-lg"></i>
                             <span class="hidden md:inline whitespace-nowrap">Word</span>
                         </button>
                         
-                        <button onclick="openTagsModal()" class="doodle-btn bg-white text-[#4a4a4a] hover:bg-[#f3f4f6] px-3 py-1.5 flex items-center justify-center space-x-1 text-sm">
-                            <i class="ph-duotone ph-sticker text-xl text-[#f29a9a]"></i><span class="hidden md:inline whitespace-nowrap">貼紙</span>
+                        <button onclick="openTagsModal()" class="doodle-btn bg-white text-[#4a4a4a] hover:bg-[#f3f4f6] px-2.5 py-1.5 flex items-center justify-center space-x-1 text-sm">
+                            <i class="ph-duotone ph-sticker text-lg text-[#f29a9a]"></i><span class="hidden md:inline whitespace-nowrap">貼紙</span>
                         </button>
-                        <button onclick="openAccountListModal()" class="doodle-btn bg-[#72a1d4] text-white hover:bg-[#5a8bc0] px-3 py-1.5 flex items-center justify-center space-x-1 text-sm">
-                            <i class="ph-duotone ph-users-three text-xl"></i><span class="hidden md:inline whitespace-nowrap">夥伴</span>
+                        <button onclick="openAccountListModal()" class="doodle-btn bg-[#72a1d4] text-white hover:bg-[#5a8bc0] px-2.5 py-1.5 flex items-center justify-center space-x-1 text-sm">
+                            <i class="ph-duotone ph-users-three text-lg"></i><span class="hidden md:inline whitespace-nowrap">夥伴</span>
                         </button>
                         <button onclick="openPhotoModal()" class="doodle-btn bg-[#f29a9a] text-white hover:bg-[#e07a7a] px-3 py-1.5 flex items-center justify-center space-x-1 text-sm">
-                            <i class="ph-bold ph-plus text-xl"></i><span class="whitespace-nowrap">寫日記</span>
+                            <i class="ph-bold ph-plus text-lg"></i><span class="whitespace-nowrap">寫日記</span>
                         </button>
                     </div>
                 </div>
@@ -410,7 +410,7 @@
                     }
                 });
 
-          const firebaseConfig = {
+              const firebaseConfig = {
   apiKey: "AIzaSyAVzW3LPgAlVvMffZwNM_wHE6HekTAkh_E",
   authDomain: "notes-6120f.firebaseapp.com",
   projectId: "notes-6120f",
