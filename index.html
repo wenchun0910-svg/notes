@@ -123,8 +123,8 @@
                     </div>
 
                     <!-- 管理員工具列 (登入後顯示) -->
-                    <!-- 修改：使用 flex-wrap 讓按鈕在螢幕太小時自動換行，避免右側被切斷 -->
-                    <div id="adminToolbar" class="hidden flex flex-wrap justify-center lg:justify-start items-center bg-[#fefce8] p-2 rounded-2xl border-2 border-[#f4d068] w-full lg:w-auto shadow-[2px_3px_0_rgba(244,208,104,0.3)] gap-2">
+                    <!-- 修改：使用 w-fit 讓黃色背景緊貼按鈕內容，消除右側多餘空白 -->
+                    <div id="adminToolbar" class="hidden flex flex-wrap justify-center items-center bg-[#fefce8] p-2 rounded-2xl border-2 border-[#f4d068] w-fit shadow-[2px_3px_0_rgba(244,208,104,0.3)] gap-2">
                         <span class="text-[#854d0e] font-bold mx-1 hidden 2xl:inline whitespace-nowrap text-md title-font">
                             <i class="ph-duotone ph-magic-wand text-[#f4d068] mr-1 align-middle text-2xl"></i>工具箱
                         </span>
@@ -410,7 +410,7 @@
                     }
                 });
 
-           const firebaseConfig = {
+          const firebaseConfig = {
   apiKey: "AIzaSyAVzW3LPgAlVvMffZwNM_wHE6HekTAkh_E",
   authDomain: "notes-6120f.firebaseapp.com",
   projectId: "notes-6120f",
@@ -893,9 +893,9 @@
         };
 
         const updateAuthUI = () => {
-            document.getElementById('authTextDesktop').innerText = isAdmin ? "偷偷溜走 (登出)" : "小尖兵報到";
+            document.getElementById('authTextDesktop').innerText = isAdmin ? "登出" : "小尖兵報到";
             document.getElementById('authIconDesktop').className = isAdmin ? "ph-duotone ph-sign-out text-2xl text-[#f29a9a]" : "ph-duotone ph-user-circle text-2xl text-[#4a4a4a]";
-            document.getElementById('authTextMobile').innerText = isAdmin ? "溜走" : "小尖兵";
+            document.getElementById('authTextMobile').innerText = isAdmin ? "登出" : "小尖兵";
             document.getElementById('authIconMobile').className = isAdmin ? "ph-duotone ph-sign-out text-xl text-[#f29a9a]" : "ph-duotone ph-user-circle text-xl text-[#4a4a4a]";
             
             document.getElementById('adminToolbar').classList.toggle('hidden', !isAdmin);
