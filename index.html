@@ -91,7 +91,7 @@
     <!-- 導覽列 -->
     <nav class="bg-white border-b-4 border-[#5a5a5a] sticky top-0 z-40 py-3 shadow-[0_4px_0_rgba(0,0,0,0.05)]">
         <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col xl:flex-row justify-between items-center gap-4">
+            <div class="flex flex-wrap xl:flex-nowrap justify-between items-center gap-4">
                 
                 <!-- 1. 左側：網站標題 -->
                 <div class="flex items-center space-x-3 w-full xl:w-auto justify-between xl:justify-start shrink-0">
@@ -112,10 +112,10 @@
                 </div>
 
                 <!-- 2. 中間：搜尋框與系統管理工具 -->
-                <div class="flex flex-col lg:flex-row items-center gap-4 w-full xl:w-auto flex-1 xl:justify-end">
+                <div class="flex flex-col lg:flex-row items-center gap-4 w-full xl:w-auto flex-1 xl:justify-end shrink">
                     
                     <!-- 手繪風搜尋框 -->
-                    <div class="relative w-full lg:w-80 shrink-0">
+                    <div class="relative w-full lg:w-72 shrink-0">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <i class="ph-bold ph-magnifying-glass text-[#4a4a4a] text-lg"></i>
                         </div>
@@ -123,34 +123,42 @@
                     </div>
 
                     <!-- 管理員工具列 (登入後顯示) -->
-                    <div id="adminToolbar" class="hidden flex items-center bg-[#fefce8] p-2 rounded-2xl border-2 border-[#f4d068] w-full lg:w-auto overflow-x-auto shadow-[2px_3px_0_rgba(244,208,104,0.3)] gap-2">
-                        <span class="text-[#854d0e] font-bold mx-2 hidden 2xl:inline whitespace-nowrap text-md title-font">
-                            <i class="ph-duotone ph-magic-wand text-[#f4d068] mr-1 align-middle text-2xl"></i>手帳工具箱
+                    <!-- 修改：使用 flex-wrap 讓按鈕在螢幕太小時自動換行，避免右側被切斷 -->
+                    <div id="adminToolbar" class="hidden flex flex-wrap justify-center lg:justify-start items-center bg-[#fefce8] p-2 rounded-2xl border-2 border-[#f4d068] w-full lg:w-auto shadow-[2px_3px_0_rgba(244,208,104,0.3)] gap-2">
+                        <span class="text-[#854d0e] font-bold mx-1 hidden 2xl:inline whitespace-nowrap text-md title-font">
+                            <i class="ph-duotone ph-magic-wand text-[#f4d068] mr-1 align-middle text-2xl"></i>工具箱
                         </span>
                         
-                        <!-- 匯出 Excel 按鈕 (新增) -->
+                        <!-- 匯出 Excel 按鈕 -->
                         <button onclick="exportToExcel()" class="doodle-btn bg-[#22c55e] text-white hover:bg-[#16a34a] px-3 py-1.5 flex items-center justify-center space-x-1 text-sm" title="匯出 Excel">
                             <i class="ph-bold ph-microsoft-excel-logo text-xl"></i>
-                            <span class="hidden md:inline whitespace-nowrap">匯出資料</span>
+                            <span class="hidden md:inline whitespace-nowrap">Excel</span>
+                        </button>
+
+                        <!-- 新增：匯出 Word 按鈕 -->
+                        <button onclick="exportToWord()" class="doodle-btn bg-[#3b82f6] text-white hover:bg-[#2563eb] px-3 py-1.5 flex items-center justify-center space-x-1 text-sm" title="匯出 Word">
+                            <i class="ph-bold ph-file-doc text-xl"></i>
+                            <span class="hidden md:inline whitespace-nowrap">Word</span>
                         </button>
                         
                         <button onclick="openTagsModal()" class="doodle-btn bg-white text-[#4a4a4a] hover:bg-[#f3f4f6] px-3 py-1.5 flex items-center justify-center space-x-1 text-sm">
-                            <i class="ph-duotone ph-sticker text-xl text-[#f29a9a]"></i><span class="hidden md:inline whitespace-nowrap">可愛貼紙</span>
+                            <i class="ph-duotone ph-sticker text-xl text-[#f29a9a]"></i><span class="hidden md:inline whitespace-nowrap">貼紙</span>
                         </button>
                         <button onclick="openAccountListModal()" class="doodle-btn bg-[#72a1d4] text-white hover:bg-[#5a8bc0] px-3 py-1.5 flex items-center justify-center space-x-1 text-sm">
-                            <i class="ph-duotone ph-users-three text-xl"></i><span class="hidden md:inline whitespace-nowrap">夥伴名單</span>
+                            <i class="ph-duotone ph-users-three text-xl"></i><span class="hidden md:inline whitespace-nowrap">夥伴</span>
                         </button>
-                        <button onclick="openPhotoModal()" class="doodle-btn bg-[#f29a9a] text-white hover:bg-[#e07a7a] px-4 py-1.5 flex items-center justify-center space-x-1 text-sm">
-                            <i class="ph-bold ph-plus text-xl"></i><span class="whitespace-nowrap">寫新日記</span>
+                        <button onclick="openPhotoModal()" class="doodle-btn bg-[#f29a9a] text-white hover:bg-[#e07a7a] px-3 py-1.5 flex items-center justify-center space-x-1 text-sm">
+                            <i class="ph-bold ph-plus text-xl"></i><span class="whitespace-nowrap">寫日記</span>
                         </button>
                     </div>
                 </div>
 
                 <!-- 3. 右側：桌面版登入按鈕 -->
-                <div class="hidden xl:flex w-full xl:w-auto justify-end shrink-0 pl-4 border-l-2 border-dashed border-[#d1d5db]">
-                    <button id="authBtnDesktop" onclick="toggleAuth()" class="doodle-btn bg-white hover:bg-[#f9fafb] text-[#4a4a4a] px-5 py-2 flex items-center space-x-2">
+                <!-- 修改：增加 margin 避免太靠邊，並縮減 padding 以適應更多螢幕 -->
+                <div class="hidden xl:flex w-full xl:w-auto justify-end shrink-0 xl:pl-4 xl:border-l-2 border-dashed border-[#d1d5db]">
+                    <button id="authBtnDesktop" onclick="toggleAuth()" class="doodle-btn bg-white hover:bg-[#f9fafb] text-[#4a4a4a] px-4 py-2 flex items-center space-x-2">
                         <i class="ph-duotone ph-user-circle text-2xl" id="authIconDesktop"></i>
-                        <span id="authTextDesktop" class="font-bold text-lg">小尖兵報到</span>
+                        <span id="authTextDesktop" class="font-bold text-lg whitespace-nowrap">小尖兵報到</span>
                     </button>
                 </div>
             </div>
@@ -402,7 +410,7 @@
                     }
                 });
 
-const firebaseConfig = {
+           const firebaseConfig = {
   apiKey: "AIzaSyAVzW3LPgAlVvMffZwNM_wHE6HekTAkh_E",
   authDomain: "notes-6120f.firebaseapp.com",
   projectId: "notes-6120f",
@@ -520,6 +528,83 @@ const firebaseConfig = {
                 
             } catch (err) {
                 console.error("Export Error:", err);
+                showToast("匯出失敗，請重試", "error");
+            }
+        };
+
+        // --- 新增：匯出 Word (.doc) 功能 ---
+        const exportToWord = () => {
+            if (photosData.length === 0) {
+                showToast("手帳裡還沒有資料可以匯出喔！", "error");
+                return;
+            }
+
+            try {
+                // 1. 建立 HTML 內容作為 Word 的內容主體
+                let content = `
+                    <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+                    <head>
+                        <meta charset='utf-8'>
+                        <title>${globalSettings.title}</title>
+                        <style>
+                            body { font-family: 'Microsoft JhengHei', 'Segoe UI', sans-serif; color: #333333; line-height: 1.6; }
+                            h1 { text-align: center; color: #4a4a4a; border-bottom: 2px solid #72a1d4; padding-bottom: 10px; }
+                            .diary-entry { border-bottom: 2px dashed #cccccc; padding: 20px 0; margin-bottom: 20px; page-break-inside: avoid; }
+                            h2 { color: #f29a9a; margin-bottom: 5px; }
+                            .meta { color: #888888; font-size: 10pt; margin-bottom: 15px; }
+                            .tags { background-color: #fcfaf5; border: 1px solid #5a5a5a; padding: 2px 6px; font-size: 10pt; margin-right: 5px; }
+                            .desc { margin-top: 15px; font-size: 11pt; }
+                            .link-box { background-color: #eff6ff; padding: 10px; margin-top: 15px; border: 1px solid #bfdbfe; font-size: 10pt; }
+                        </style>
+                    </head>
+                    <body>
+                        <h1>${globalSettings.title} - 心情札記總覽</h1>
+                `;
+
+                // 2. 依照日期由新到舊排序
+                const exportData = [...photosData].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+                exportData.forEach(photo => {
+                    let targetUrl = photo.url;
+                    if (photo.url && photo.url.includes("|||")) {
+                        targetUrl = photo.url.split("|||")[0];
+                    }
+                    
+                    const tagsHtml = photo.tags ? photo.tags.map(t => `<span class='tags'>${t}</span>`).join('') : '';
+
+                    content += `
+                        <div class="diary-entry">
+                            <h2>${photo.title}</h2>
+                            <div class="meta">
+                                📅 日期：${photo.date} &nbsp;&nbsp;|&nbsp;&nbsp; 👁️ 瀏覽人次：${photo.views || 0}
+                            </div>
+                            ${tagsHtml ? `<div style="margin-bottom: 10px;">🏷️ 貼紙：${tagsHtml}</div>` : ''}
+                            <div class="desc">${photo.desc || '沒有寫什麼...'}</div>
+                            <div class="link-box">
+                                🔗 雲端資料夾連結：<br><a href="${targetUrl}">${targetUrl}</a>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                content += `</body></html>`;
+
+                // 3. 轉為 Blob 產生下載連結
+                const blob = new Blob(['\ufeff', content], { type: 'application/msword' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `${globalSettings.title}_${new Date().toISOString().split('T')[0]}.doc`;
+                
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+
+                showToast("太棒了！資料已匯出為 Word！");
+                
+            } catch (err) {
+                console.error("Export Word Error:", err);
                 showToast("匯出失敗，請重試", "error");
             }
         };
@@ -854,7 +939,7 @@ const firebaseConfig = {
             clearTimeout(toastTimeout); toastTimeout = setTimeout(() => { toast.classList.remove('translate-y-0', 'opacity-100'); toast.classList.add('translate-y-20', 'opacity-0'); }, 3000);
         };
 
-        Object.assign(window, { toggleAuth, checkLogin, closeModal, openPhotoModal, editPhoto, savePhoto, promptDelete, confirmDelete, recordView, openAccountListModal, openAccountEditModal, editUser, saveUser, handleSearch, changePage, openTitleModal, saveWebsiteTitle, openTagsModal, addNewTag, deleteTag, openFullDesc, exportToExcel });
+        Object.assign(window, { toggleAuth, checkLogin, closeModal, openPhotoModal, editPhoto, savePhoto, promptDelete, confirmDelete, recordView, openAccountListModal, openAccountEditModal, editUser, saveUser, handleSearch, changePage, openTitleModal, saveWebsiteTitle, openTagsModal, addNewTag, deleteTag, openFullDesc, exportToExcel, exportToWord });
 
         initSystem();
     </script>
