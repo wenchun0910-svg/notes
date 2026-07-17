@@ -206,6 +206,7 @@
     <!-- ================= 互動視窗 (Modals) ================= -->
 
     <!-- 全文檢視視窗 -->
+    <!-- 重大修正：加入 max-h-[85vh] 限制總高度，並改用 flex-col 確保內部元素不溢出 -->
     <div id="fullDescModal" class="fixed inset-0 bg-[#4a4a4a] bg-opacity-40 z-[60] hidden flex items-center justify-center backdrop-blur-[2px] p-4">
         <!-- 強制限制最大高度為 85vh 並使用 flex-col -->
         <div class="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 max-w-2xl w-full mx-auto relative doodle-card flex flex-col max-h-[85vh]">
@@ -438,7 +439,7 @@
                     }
                 });
 
-          const firebaseConfig = {
+                const firebaseConfig = {
   apiKey: "AIzaSyAVzW3LPgAlVvMffZwNM_wHE6HekTAkh_E",
   authDomain: "notes-6120f.firebaseapp.com",
   projectId: "notes-6120f",
