@@ -206,7 +206,7 @@
     <!-- ================= 互動視窗 (Modals) ================= -->
 
     <!-- 全文檢視視窗 -->
-    <!-- 重大修正：加入 flex flex-col max-h-[85vh] 限制視窗最大高度並設定為彈性盒子排版 -->
+    <!-- 修改：外層容器加入 flex-col 與 max-h-[85vh] -->
     <div id="fullDescModal" class="fixed inset-0 bg-[#4a4a4a] bg-opacity-40 z-[60] hidden flex items-center justify-center backdrop-blur-[2px] p-4">
         <div class="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 max-w-2xl w-full mx-auto relative doodle-card flex flex-col max-h-[85vh]">
             <button onclick="closeModal('fullDescModal')" class="absolute -top-3 -right-3 bg-[#fefce8] border-2 border-[#5a5a5a] text-[#5a5a5a] hover:bg-[#f4d068] w-10 h-10 rounded-full flex items-center justify-center transition-colors shadow-[2px_2px_0_#5a5a5a] z-10">
@@ -216,11 +216,12 @@
                 <i class="ph-duotone ph-book-open-text text-[#72a1d4] text-3xl"></i>
                 <h2 id="fullDescModalTitle" class="text-2xl font-bold text-[#4a4a4a] title-font"></h2>
             </div>
-            <!-- 重大修正：加上 overflow-y-auto 讓此區塊可以內部捲動 -->
-            <div id="fullDescModalContent" class="ql-editor view-mode rich-text-content text-[#5a5a5a] leading-relaxed overflow-y-auto pr-2 handwriting-font">
+            
+            <!-- 修改：加入 min-h-0 與 overflow-y-auto，強制讓此區塊可以捲動且不撐開 Modal -->
+            <div id="fullDescModalContent" class="ql-editor view-mode rich-text-content text-[#5a5a5a] leading-relaxed overflow-y-auto pr-2 handwriting-font min-h-0 flex-1">
                 <!-- 全文內容 -->
             </div>
-            <!-- 重大修正：加上 shrink-0 與 pt-4 確保底部按鈕區不會被文字擠壓變形 -->
+            
             <div class="mt-6 flex justify-end shrink-0 pt-4 border-t-2 border-dashed border-[#d1d5db]">
                 <button onclick="closeModal('fullDescModal')" class="doodle-btn px-6 py-2 bg-[#fdfbf7] hover:bg-[#f3f4f6] text-[#4a4a4a] font-bold">蓋上日記</button>
             </div>
@@ -437,7 +438,7 @@
                     }
                 });
 
-            const firebaseConfig = {
+                const firebaseConfig = {
   apiKey: "AIzaSyAVzW3LPgAlVvMffZwNM_wHE6HekTAkh_E",
   authDomain: "notes-6120f.firebaseapp.com",
   projectId: "notes-6120f",
