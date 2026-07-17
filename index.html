@@ -71,8 +71,13 @@
         .ql-editor { min-height: 150px; background-color: #fff; border-bottom-left-radius: 0.75rem; border-bottom-right-radius: 0.75rem;}
         
         /* 卡片與全文檢視內富文本顯示微調 */
+        /* 新增：word-break: break-all; 與 overflow-wrap: break-word; 強制過長網址自動換行 */
+        .rich-text-content {
+            word-break: break-all;
+            overflow-wrap: break-word;
+        }
         .rich-text-content p { margin-bottom: 0.4rem; }
-        .rich-text-content a { color: var(--primary-blue); text-decoration: underline; text-decoration-style: wavy; cursor: pointer; }
+        .rich-text-content a { color: var(--primary-blue); text-decoration: underline; text-decoration-style: wavy; cursor: pointer; word-break: break-all; }
         .ql-editor.view-mode { padding: 0; min-height: auto; overflow-y: visible; background-color: transparent;}
 
         /* 手繪卡片邊框 */
@@ -432,7 +437,7 @@
                     }
                 });
 
-          const firebaseConfig = {
+            const firebaseConfig = {
   apiKey: "AIzaSyAVzW3LPgAlVvMffZwNM_wHE6HekTAkh_E",
   authDomain: "notes-6120f.firebaseapp.com",
   projectId: "notes-6120f",
